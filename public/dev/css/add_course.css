@@ -1,0 +1,10 @@
+#add-course-info{margin-top: 30px;;}
+#img-list img{width: 100%;}
+#img-list .img-title{width: 30px;margin-bottom: 5px;background-color: #888;color: #fff;text-align: center;font-size: 15px;line-height: 30px;width: 100%;}
+#course-list{margin-top: 20px;height: 100%;}
+.course-search-list{border: 1px solid #666;padding: 10px;;}
+.course-search-list img{width: 50px;height: 50px;}
+#student-list li{ width: 33%;height: 50px;display: inline-block;text-align: center;line-height: 50px;}
+#right-but-course button{margin: 5px;width: 80%;} 
+#right-but-student button{margin: 5px;width: 80%;} 
+#img-list button{margin-top: 5px;width: 80%;} 

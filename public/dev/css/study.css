@@ -1,0 +1,8 @@
+body,html{height: 100%;width: 100%;overflow: hidden;}
+.popover ul{padding: 0px !important;}
+.popover li{display: inline-block;height: 90px;width:80px;border: 1px solid #aaa;margin-left: 8px;margin-top: 10px;;}
+.popover li:hover{background-color: #72c02c;;}
+#left-menu{background-color: #fff;height: 100%;width: 300px;position: absolute;z-index: 999;left:-300px}
+#comment-div{background-color: #fff;height: 100%;width: 300px;position: absolute;z-index: 999;left:100%}
+
+#comment-info span{margin-top: 10px; cursor: pointer;}

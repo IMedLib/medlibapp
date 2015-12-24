@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     changed = require('gulp-changed'),
     jshint = require('gulp-jshint'),
     webpack = require('gulp-webpack'),
+    concat = require('gulp-concat'),
     webpackConfig = require('./webpack.config.js')
 ;
 const scriptPath="./public/dist/js/";
@@ -37,6 +38,16 @@ gulp.task('webpack:all', function () {
     });
 });
 
+gulp.task('webpack:js',function(){
+    del(['./public/dist/js/register/*.wp.js']).then(paths => {
+        console.log('Deleted files and folders:\n', paths.join('\n'));
+    });
+    gulp.src('./public/dist/js/register/register.js')
+    .pipe(webpack(webpackConfig))
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/dist/js/register'));
+});
+
 gulp.task('css',function(){
    gulp.src('./public/dist/css/login/login.css')
     .pipe(minifycss()).pipe(rename('login.min.css'))
@@ -44,7 +55,7 @@ gulp.task('css',function(){
 });
 
 gulp.task('lint', function () {
-    gulp.src('./public/dist/js/**/*.js')
+    gulp.src('./public/dist/js/register/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -62,11 +73,8 @@ gulp.task('clean:css', function () {
 });
 
 gulp.task('scripts', function () {
-    //gulp.src('./public/dev/js/')
-    //    .pipe(changed('./public/dist/js/'))
-    //    .pipe(uglify())
-    //    .pipe(gulp.dest('./public/dist/js/'));
-    gulp.src('./public/dev/js/login/login.js')
+    gulp.src('./public/dist/js/lib/cookie.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./public/dist/js/login/'));
+        .pipe(rename("cookie.min.js"))
+        .pipe(gulp.dest('./public/dist/js/lib/'));
 });

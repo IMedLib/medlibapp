@@ -1,7 +1,7 @@
 /**
- * Created by zhangruofan on 2015/12/23.
+ * Created by zhangruofan on 2015/12/24.
  */
-var cookie=require('../lib/cookie.js');
+var cookie=require('../lib/cookie');
 $(document).ready(function () {
     var wait = 60, url = "http://121.41.92.56:8002/";
     $('form').submit(function () {
@@ -14,12 +14,13 @@ $(document).ready(function () {
         if (code.length != 6) {
             $('#codeErr').text('验证码错误！').fadeOut(5000);
         }
-        $.getJSON(url + 'User/Put/Login/', {
+        $.getJSON(url + 'User/Add/Reg/', {
             mobile: mobile,
+            recuid: $('#recuid').val(),
             verifycode: code
         }).done(function (data) {
             if (data.code !== 0) {
-                $('#loginErr').text(data.msg === "" ? "登录失败，请重新尝试！" : data.msg)
+                $('#registerErr').text(data.msg === "" ? "注册失败，请重新尝试！" : data.msg)
                     .fadeOut(5000);
                 return false;
             }
@@ -30,12 +31,12 @@ $(document).ready(function () {
                 window.location.href = '/';
             }
         }).fail(function () {
-            $('#loginErr').text("请求超时！").fadeOut(5000);
+            $('#registerErr').text("请求超时！").fadeOut(5000);
         });
         return false;
     });
     $('#codeGet').on('click', function () {
-        var mobile=$('#mobile').val();
+        var mobile = $('#mobile').val();
         if (!isMobile(mobile)) {
             $('#mobileErr').text('非法手机号码！').fadeOut(5000);
             return false;
@@ -43,17 +44,18 @@ $(document).ready(function () {
         setTime($(this));
         getCode(mobile);
     });
-    function isMobile(mobile){
-        if(mobile.length === 11 && /^(((13)|(15)|(17)|(18))+\d{9})$/.test(mobile))
+    function isMobile(mobile) {
+        if (mobile.length === 11 && /^(((13)|(15)|(17)|(18))+\d{9})$/.test(mobile))
             return true;
         return false;
     }
+
     function getCode(mobile) {
         $.getJSON(url + '/Captcha/Add', {
             mobile:mobile
-        }).done(function(data){
+        }).done(function (data) {
             if (data.code !== 0) {
-                $('#codeErr').text(data.msg === "" ? "获取验证码失败，请重新尝试！" : data.msg)
+                $('#codeErr').text(data.msg === "" ? "获取失败，请重新尝试！" : data.msg)
                     .fadeOut(5000);
                 return false;
             }

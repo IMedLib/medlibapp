@@ -20,7 +20,7 @@ app.use(views('views',{
 }));
 app.use(router());
 app.use(require('koa-static')(__dirname+'/public'));
-app.use(require('koa-favicon')(__dirname+'/public/img/logo/favicon.ico'));
+app.use(require('koa-favicon')(__dirname+'/public/dist/img/logo/favicon.ico'));
 
 app.use(require('koa-gzip')());
 module.exports=app;

@@ -27,6 +27,5 @@ build/Release
 node_modules
 .idea
 test
-configs/main.js
 public/dev
 
